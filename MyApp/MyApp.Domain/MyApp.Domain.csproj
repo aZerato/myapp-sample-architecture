@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>eb27517d-7003-4081-8d2a-85f7cb382b41</ProjectGuid>
+    <ProjectGuid>{EB27517D-7003-4081-8D2A-85F7CB382B41}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MyApp.Domain</RootNamespace>
@@ -30,24 +30,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="SampleModule\Aggregates\SampleData.cs" />
+    <Compile Include="SampleModule\Aggregates\SampleDataSelectBuilder.cs" />
+    <Compile Include="SampleModule\Aggregates\SampleDataStatus.cs" />
+    <Compile Include="SampleModule\Services\BasicSampleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleModule\Services\IBasicSampleService.cs" />
+    <Compile Include="SampleModule\Services\ISecondaryBasicSampleService.cs" />
+    <Compile Include="SampleModule\Services\SecondaryBasicSampleService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyApp.CrossCutting\MyApp.CrossCutting.csproj">
+      <Project>{e5dea9d2-2c9f-446b-87cf-f08df1256d4b}</Project>
+      <Name>MyApp.CrossCutting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyApp.Domain.DTO\MyApp.Domain.DTO.csproj">
+      <Project>{0A300DDC-E605-44C3-9016-460CB49856E4}</Project>
+      <Name>MyApp.Domain.DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -57,5 +68,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
- </Project>
+</Project>
