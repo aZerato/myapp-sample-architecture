@@ -33,4 +33,5 @@ Description : The app management layer
 - CrossCutting : a project can be used with all others
 
 - The (Inversion Of Control)[https://msdn.microsoft.com/en-us/library/ff921087.aspx]
+	*	DI & LifeTimeManager : https://msdn.microsoft.com/en-us/library/ff647854.aspx
 

@@ -13,6 +13,13 @@
         void Add(string key, object value);
 
         /// <summary>
+        /// Get object value in cache.
+        /// </summary>
+        /// <typeparam name="T">the class.</typeparam>
+        /// <param name="key">The object cache key.</param>
+        T Get<T>(string key) where T : class;
+
+        /// <summary>
         /// Remove an object from cache.
         /// </summary>
         /// <param name="key">The object cache key.</param>

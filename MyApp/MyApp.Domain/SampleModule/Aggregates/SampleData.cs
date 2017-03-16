@@ -1,18 +1,14 @@
 ﻿namespace MyApp.Domain.SampleModule.Aggregates
 {
+    using Core;
     using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
     /// SampleData class.
     /// </summary>
     [Table("SampleData")]
-    public class SampleData
+    public class SampleData : BaseEntity<int>
     {
-        /// <summary>
-        /// Gets or sets the ID.
-        /// </summary>
-        public int ID { get; set; }
-
         /// <summary>
         /// Gets or sets the Title.
         /// </summary>

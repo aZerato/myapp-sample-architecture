@@ -14,9 +14,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Infrastructure", "04 - Infrastructure", "{266475EB-E74D-4F00-B709-9A03E7075884}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{627E39CD-37B8-445A-827C-E45939F871BE}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.CrossCutting", "MyApp.CrossCutting\MyApp.CrossCutting.csproj", "{E5DEA9D2-2C9F-446B-87CF-F08DF1256D4B}"
 EndProject

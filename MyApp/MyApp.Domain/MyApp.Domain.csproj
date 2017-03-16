@@ -55,6 +55,10 @@
       <Project>{e5dea9d2-2c9f-446b-87cf-f08df1256d4b}</Project>
       <Name>MyApp.CrossCutting</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyApp.Domain.Core\MyApp.Domain.Core.csproj">
+      <Project>{D4A24397-F884-4F44-A55D-DA7BC975BD16}</Project>
+      <Name>MyApp.Domain.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyApp.Domain.DTO\MyApp.Domain.DTO.csproj">
       <Project>{0A300DDC-E605-44C3-9016-460CB49856E4}</Project>
       <Name>MyApp.Domain.DTO</Name>

@@ -5,7 +5,7 @@
     /// <summary>
     /// Interfaces
     /// </summary>
-    interface ISecondaryBasicSampleService
+    public interface ISecondaryBasicSampleService
     {
         /// <summary>
         /// Return a SampleData by ID.

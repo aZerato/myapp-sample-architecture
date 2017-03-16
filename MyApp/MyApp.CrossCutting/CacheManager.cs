@@ -12,20 +12,40 @@
         /// </summary>
         /// <param name="key"><see cref="ICacheManager.Add(string, object)"/></param>
         /// <param name="value"><see cref="ICacheManager.Add(string, object)"/></param>
-        public void Add(string key, object value)
+        void ICacheManager.Add(string key, object value)
         {
             ObjectCache cacheInstance = MemoryCache.Default;
 
-            Clear(key);
+            if (cacheInstance.Contains(key))
+            {
+                cacheInstance.Remove(key);
+            }
 
             cacheInstance.Add(key, value, ObjectCache.InfiniteAbsoluteExpiration);
+        }
+
+        /// <summary>
+        /// <see cref="ICacheManager.Get(string)"/> 
+        /// </summary>
+        /// <typeparam name="T"><see cref="ICacheManager.Get(string)"/></typeparam>
+        /// <param name="key"><see cref="ICacheManager.Get(string)"/></param>
+        T ICacheManager.Get<T>(string key)
+        {
+            ObjectCache cacheInstance = MemoryCache.Default;
+
+            if (cacheInstance.Contains(key))
+            {
+                return (T)cacheInstance[key];
+            }
+
+            return null;
         }
 
         /// <summary>
         /// <see cref="ICacheManager.Clear(string)"/> 
         /// </summary>
         /// <param name="key"><see cref="ICacheManager.Clear(string)"/></param>
-        public void Clear(string key)
+        void ICacheManager.Clear(string key)
         {
             ObjectCache cacheInstance = MemoryCache.Default;
 

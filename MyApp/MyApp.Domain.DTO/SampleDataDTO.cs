@@ -5,8 +5,13 @@
     /// <summary>
     /// SampleData DTO class.
     /// </summary>
-    public class SampleDataDTO : BaseEntity<int>
+    public class SampleDataDTO
     {
+        /// <summary>
+        /// Gets or sets the Identifier.
+        /// </summary>
+        public int ID { get; set; }
+
         /// <summary>
         /// Gets or sets the Title.
         /// </summary>
