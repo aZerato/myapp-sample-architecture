@@ -72,6 +72,26 @@
             }
         }
 
+        /// <summary>
+        /// <see cref="IUnitOfWork.CreateSet"/>
+        /// </summary>
+        public IDbSet<TEntity> CreateSet<TEntity>()
+            where TEntity : class
+        {
+            return base.Set<TEntity>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        public void SetModified<TEntity>(TEntity entity)
+            where TEntity : class
+        {
+            base.Entry<TEntity>(entity).State = EntityState.Modified;
+        }
+
         #endregion
     }
 }

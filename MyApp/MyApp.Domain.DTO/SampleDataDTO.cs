@@ -1,7 +1,5 @@
 ﻿namespace MyApp.Domain.DTO
 {
-    using Core;
-
     /// <summary>
     /// SampleData DTO class.
     /// </summary>
