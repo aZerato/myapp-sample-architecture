@@ -19,7 +19,7 @@
             {
                 ID = data.ID,
                 Title = data.Title,
-                Status = EnumExtensions.GetDescription(data.Status)
+                Status = data.Status.ToString()
             };
         }
     }

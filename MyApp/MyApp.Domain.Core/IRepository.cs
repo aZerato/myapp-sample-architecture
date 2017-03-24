@@ -46,6 +46,14 @@
         /// </summary>
         /// <typeparam name="TResult">Expected return objects.</typeparam>
         /// <param name="selectBuilder">Custom select expression.</param>
+        /// <returns>Expected entities.</returns>
+        IEnumerable<TResult> GetAll<TResult>(Expression<Func<TEntity, TResult>> selectBuilder);
+
+        /// <summary>
+        /// Get entities from context.
+        /// </summary>
+        /// <typeparam name="TResult">Expected return objects.</typeparam>
+        /// <param name="selectBuilder">Custom select expression.</param>
         /// <param name="predicate">Custom filter expression.</param>
         /// <returns>Expected entities.</returns>
         IEnumerable<TResult> GetAll<TResult>(Expression<Func<TEntity, TResult>> selectBuilder, Expression<Func<TEntity, bool>> predicate);

@@ -1,8 +1,12 @@
 ﻿namespace MyApp.IoC
 {
-    using Microsoft.Practices.Unity;
     using CrossCutting;
+    using Data;
+    using Data.Core;
+    using Domain.Core;
+    using Domain.SampleModule.Aggregates;
     using Domain.SampleModule.Services;
+    using Microsoft.Practices.Unity;
 
     /// <summary>
     /// DI container.
@@ -25,7 +29,8 @@
             this.RegisterType<ISecondaryBasicSampleService, SecondaryBasicSampleService>();
 
             // Data Layer.
-
+            this.RegisterType<IUnitOfWork, UnitOfWorkContext>();
+            this.RegisterType<IRepository<SampleData>, Repository<SampleData>>();
 
             // Infrastructure Layer.
             this.RegisterType<ICacheManager, CacheManager>(new ContainerControlledLifetimeManager());

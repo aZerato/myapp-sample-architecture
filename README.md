@@ -6,6 +6,11 @@ Pattern [Domain-Driven Design](http://dddcommunity.org/) DDD
 
 > The user interface layer
 
+Basic API :
+
+- Controller "Sample" is used for DI & sample of CacheManager class.
+- Controller "SampleAlt" is used for demonstrate the using of "services" > "repository" > "UoW" > "EF"
+
 ## 02 - Domain
 
 > The data management layer
@@ -16,16 +21,15 @@ Pattern [Domain-Driven Design](http://dddcommunity.org/) DDD
 
 - The [Specification Pattern](https://github.com/jnicolau/NSpecifications) (soon).
 
-- "Select Builder" : Thanks to LINQ you are able to create custom expression for return directly DTO (sample: MyApp.Domain.SampleModule.Aggregates.SampleDataSelectBuilder).
+- "Select Builder" : Thanks to LINQ you are able to create custom expression for return directly an DTO (sample: MyApp.Domain.SampleModule.Aggregates.SampleDataSelectBuilder).
 
 ## 03 - Data
 
 > The data access layer 
 
-- Use EntityFramework with DbSet for link an object to a class object (sample: MyApp.Domain.SampleModule.Aggregates.SampleData).
-- The [Unit Of Work (UnitOfWork) Pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html) add transactions for the resolution of concurrency problems (MyApp.Data.UnitOfWorkContext).
-- The [Repository Pattern](https://msdn.microsoft.com/en-us/library/ff649690.aspx). 
-The Repository Pattern add a layer between DbSet (return IQueryable) with UoW and the data uses in "Domain" layer. 
+- Use EntityFramework (EF) with DbSet/Annotations for link a SQL/Table to a class/object (sample: MyApp.Domain.SampleModule.Aggregates.SampleData).
+- The [Unit Of Work (UnitOfWork / UoW) Pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html) add transactions for the resolution of concurrency problems (MyApp.Data.UnitOfWorkContext).
+- The [Repository Pattern](https://msdn.microsoft.com/en-us/library/ff649690.aspx) add a layer between DbSet (return IQueryable) with UoW and the data used in "Domain" layer. 
 Queryable manipulation is sensible, a Repository return an Enumerable or an Entity. (MyApp.Data.Core.Repository && MyApp.Domain.Core.IRepository)
 
 

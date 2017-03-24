@@ -261,6 +261,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SampleAltController.cs" />
     <Compile Include="Controllers\SampleController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -348,6 +349,14 @@
     <ProjectReference Include="..\MyApp.CrossCutting\MyApp.CrossCutting.csproj">
       <Project>{E5DEA9D2-2C9F-446B-87CF-F08DF1256D4B}</Project>
       <Name>MyApp.CrossCutting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyApp.Domain.DTO\MyApp.Domain.DTO.csproj">
+      <Project>{0A300DDC-E605-44C3-9016-460CB49856E4}</Project>
+      <Name>MyApp.Domain.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyApp.Domain\MyApp.Domain.csproj">
+      <Project>{EB27517D-7003-4081-8D2A-85F7CB382B41}</Project>
+      <Name>MyApp.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyApp.IoC\MyApp.IoC.csproj">
       <Project>{EB907729-8B4F-4DDD-A494-409965BA3A0D}</Project>
