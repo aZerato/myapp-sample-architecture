@@ -1,13 +1,13 @@
-﻿namespace MyApp.Domain.DTO;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 /// <summary>
-/// SampleData DTO class.
+/// SampleData class.
 /// </summary>
-public class SampleDataDTO
+[Table("SampleData")]
+public class SampleData
 {
-    /// <summary>
-    /// Gets or sets the Identifier.
-    /// </summary>
+    [Key]
     public int ID { get; set; }
 
     /// <summary>
@@ -18,5 +18,5 @@ public class SampleDataDTO
     /// <summary>
     /// Gets or sets the Status.
     /// </summary>
-    public string Status { get; set; } = string.Empty;
+    public SampleDataStatus Status { get; set; }
 }

@@ -1,28 +1,11 @@
-﻿namespace MyApp.Domain.SampleModule.Services
+﻿namespace MyApp.Domain.SampleModule.Services;
+
+/// <inheritdoc cref="IBasicSampleService"/>
+public class BasicSampleService : IBasicSampleService
 {
-    /// <summary>
-    /// Basic Sample Service.
-    /// </summary>
-    public class BasicSampleService : IBasicSampleService
+    /// <inheritdoc cref="IBasicSampleService.IsAvailable()"/>
+    bool IBasicSampleService.IsAvailable()
     {
-        #region ----- Fields -----
-        #endregion
-
-        #region ----- Constructor -----
-        #endregion
-
-        #region ----- Implement IBasicSampleService -----
-
-        /// <summary>
-        /// <see cref="IBasicSampleService.IsAvailable()"/> 
-        /// </summary>
-        /// <param name="token"><see cref="IBasicSampleService.IsAvailable()"</param>
-        /// <returns><see cref="IBasicSampleService.IsAvailable()"</returns>
-        bool IBasicSampleService.IsAvailable()
-        {
-            return true;
-        }
-
-        #endregion
+        return true;
     }
 }
