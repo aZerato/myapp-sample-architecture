@@ -1,4 +1,4 @@
-# Sample ASP .NET Architecture
+# Sample ASP .NET Core Architecture
 
 Pattern [Domain-Driven Design](http://dddcommunity.org/) DDD
 
@@ -6,38 +6,59 @@ Pattern [Domain-Driven Design](http://dddcommunity.org/) DDD
 
 > The user interface layer
 
-Basic API :
+- [MyApp(.MinAPI)](./MyApp/MyApp/README.md) : Min API with SwaggerUI
 
-- Controller "Sample" is used for DI & sample of CacheManager class.
-- Controller "SampleAlt" is used for demonstrate the using of "services" > "repository" > "UoW" > "EF"
+![SwaggerUI](./img/swaggerui.png)
 
 ## 02 - Domain
 
 > The data management layer
 
-- Use "module" conception : services interfaces with their implementation (Module : aggregates/services [DDD])
-
-- DTO : Data Transfer Object (sample: MyApp.Domain.DTO.SampleDataDTO).
-
-- The [Specification Pattern](https://github.com/jnicolau/NSpecifications) (soon).
-
-- "Select Builder" : Thanks to LINQ you are able to create custom expression for return directly an DTO (sample: MyApp.Domain.SampleModule.Aggregates.SampleDataSelectBuilder).
+- [Domain](./MyApp/MyApp.Domain/README.md)
 
 ## 03 - Data
 
 > The data access layer 
 
-- Use EntityFramework (EF) with DbSet/Annotations for link a SQL/Table to a class/object (sample: MyApp.Domain.SampleModule.Aggregates.SampleData).
-- The [Unit Of Work (UnitOfWork / UoW) Pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html) add transactions for the resolution of concurrency problems (MyApp.Data.UnitOfWorkContext).
-- The [Repository Pattern](https://msdn.microsoft.com/en-us/library/ff649690.aspx) add a layer between DbSet (return IQueryable) with UoW and the data used in "Domain" layer. 
-Queryable manipulation is sensible, a Repository return an Enumerable or an Entity. (MyApp.Data.Core.Repository && MyApp.Domain.Core.IRepository)
-
+- [Data](./MyApp/MyApp.Data/README.md)
 
 ## 04 - Infrastructure
 
 > The app management layer
 
-- CrossCutting : a layer can be used in all others.
-- The [Inversion Of Control](https://msdn.microsoft.com/en-us/library/ff921087.aspx).
-- Dependancy Injection (DI) & [LifeTimeManager](https://msdn.microsoft.com/en-us/library/ff647854.aspx).
+- [CrossCutting](./MyApp/MyApp.CrossCutting/README.md)
 
+## Global
+
+- The [Inversion Of Control](https://msdn.microsoft.com/en-us/library/ff921087.aspx).
+
+## Installation
+
+### Local DB
+
+Install docker,
+Then open a CLI :
+
+> docker compose up -d
+
+> dotnet tool install --global dotnet-ef
+
+OR (if already installed) :
+
+> dotnet tool update --global dotnet-ef
+
+Then, 
+
+> cd .\MyApp
+
+Initial Migration for a fresh start.
+
+> dotnet ef migrations add InitialCreate --project .\MyApp.Data\MyApp.Data.csproj --startup-project .\MyApp\MyApp.csproj
+
+Create Database or Update :
+
+> dotnet ef database update --project MyApp/MyApp.csproj
+
+Use SQL Server Explorer :
+
+![Use SQL Server Explorer](./img/sqlexplorer.png)

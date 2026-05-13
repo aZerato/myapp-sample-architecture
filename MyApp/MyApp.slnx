@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/01 - Presentation/">
+    <Project Path="MyApp/MyApp.csproj" />
+  </Folder>
+  <Folder Name="/02 - Domain/">
+    <Project Path="MyApp.Domain/MyApp.Domain.csproj" />
+  </Folder>
+  <Folder Name="/03 - Data/">
+    <Project Path="MyApp.Data/MyApp.Data.csproj" />
+  </Folder>
+  <Folder Name="/04 - Infrastructure/">
+    <Project Path="MyApp.CrossCutting/MyApp.CrossCutting.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="../README.md" />
+    <File Path="docker-compose.yml" />
+  </Folder>
+</Solution>

@@ -1,73 +1,52 @@
-﻿namespace MyApp.Domain.SampleModule.Services
+﻿using MyApp.Domain.SampleModule.Aggregates;
+using MyApp.Domain.DTO;
+
+/// <inheritdoc cref="ISecondaryBasicSampleService"/>
+public class SecondaryBasicSampleService 
+    : ISecondaryBasicSampleService
 {
-    using Aggregates;
-    using Core;
-    using CrossCutting;
-    using DTO;
-    using System;
-    using System.Collections.Generic;
+    IUnitOfWork _unitOfWork;
 
     /// <summary>
-    /// Secondary Basic Sample Service.
+    /// Default SecondaryBasicSampleService constructor.
     /// </summary>
-    public class SecondaryBasicSampleService : ISecondaryBasicSampleService
+    public SecondaryBasicSampleService(
+            IUnitOfWork unitOfWork
+    )
     {
-        #region ----- Fields -----
+        _unitOfWork = unitOfWork;
+    }
 
-        /// <summary>
-        /// Repository<SampleData> instance.
-        /// </summary>
-        private IRepository<SampleData> sampleDataRepository;
+    /// <inheritdoc cref="ISecondaryBasicSampleService.GetById(int)" />
+    SampleDataDTO ISecondaryBasicSampleService.GetById(int ID)
+    {
+        var data = _unitOfWork.SampleDataRepository.GetById(ID);
 
-        /// <summary>
-        /// CacheManager instance.
-        /// </summary>
-        private ICacheManager cacheManager;
-
-        #endregion
-
-        #region ----- Constructor -----
-
-        /// <summary>
-        /// Default SecondaryBasicSampleService constructor.
-        /// </summary>
-        public SecondaryBasicSampleService (
-                IRepository<SampleData> sampleDataRepository,
-                ICacheManager cacheManager
-        ) {
-            this.sampleDataRepository = sampleDataRepository;
-            this.cacheManager = cacheManager;
-        }
-
-        #endregion
-
-        #region ----- Implement IBasicSampleService -----
-
-        /// <summary>
-        /// <see cref="ISecondaryBasicSampleService.GetSampleData(int)" />
-        /// </summary>
-        /// <param name="ID"><see cref="ISecondaryBasicSampleService.GetSampleData(int)" /></param>
-        /// <returns><see cref="ISecondaryBasicSampleService.GetSampleData(int)" /></returns>
-        SampleDataDTO ISecondaryBasicSampleService.GetSampleData(int ID)
+        return new SampleDataDTO()
         {
-            var data = this.sampleDataRepository.Get(ID);
-            
-            return new SampleDataDTO() {
-                ID = data.ID,
-                Status = EnumExtensions.GetDescription(data.Status),
-                Title = data.Title
-            };
-        }
+            ID = data.ID,
+            Status = EnumExtensions.GetDescription(data.Status),
+            Title = data.Title
+        };
+    }
 
-        /// <summary>
-        /// <see cref="ISecondaryBasicSampleService.GetAllSampleData()"/> 
-        /// </summary>
-        /// <returns><see cref="ISecondaryBasicSampleService.GetAllSampleData()"/></returns>
-        IEnumerable<SampleDataDTO> ISecondaryBasicSampleService.GetAllSampleData()
+    /// <inheritdoc cref="ISecondaryBasicSampleService.GetAll" />
+    IEnumerable<SampleDataDTO> ISecondaryBasicSampleService.GetAll()
+    {
+        return _unitOfWork.SampleDataRepository.GetAll(SampleDataSelectBuilder.SelectSampleData());
+    }
+
+    /// <inheritdoc cref="ISecondaryBasicSampleService.GetAll" />
+    void ISecondaryBasicSampleService.Add(SampleDataDTO sampleDataDTO)
+    {
+        Enum.TryParse<SampleDataStatus>(sampleDataDTO.Status, out var status);
+
+        _unitOfWork.SampleDataRepository.Add(new SampleData
         {
-            return this.sampleDataRepository.GetAll(SampleDataSelectBuilder.SelectSampleData());
-        }
+            Status = status,
+            Title = sampleDataDTO.Title
+        });
 
-        #endregion
+        _unitOfWork.SaveChanges();
     }
 }

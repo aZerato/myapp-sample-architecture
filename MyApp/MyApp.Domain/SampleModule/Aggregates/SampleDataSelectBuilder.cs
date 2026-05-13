@@ -1,26 +1,25 @@
-﻿namespace MyApp.Domain.SampleModule.Aggregates
-{
-    using DTO;
-    using System;
-    using System.Linq.Expressions;
+﻿namespace MyApp.Domain.SampleModule.Aggregates;
 
+using DTO;
+using System;
+using System.Linq.Expressions;
+
+/// <summary>
+/// SampleData SelectBuilders.
+/// </summary>
+public static class SampleDataSelectBuilder
+{
     /// <summary>
-    /// SampleData SelectBuilders.
+    /// Transform SampleData to DTO.
     /// </summary>
-    public static class SampleDataSelectBuilder
+    /// <returns></returns>
+    public static Expression<Func<SampleData, SampleDataDTO>> SelectSampleData()
     {
-        /// <summary>
-        /// Transform SampleData to DTO.
-        /// </summary>
-        /// <returns></returns>
-        public static Expression<Func<SampleData, SampleDataDTO>> SelectSampleData()
+        return data => new SampleDataDTO
         {
-            return data => new SampleDataDTO
-            {
-                ID = data.ID,
-                Title = data.Title,
-                Status = data.Status.ToString()
-            };
-        }
+            ID = data.ID,
+            Title = data.Title,
+            Status = data.Status.ToString()
+        };
     }
 }

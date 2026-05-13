@@ -1,8 +1,4 @@
-﻿namespace MyApp.Domain.Core;
-
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 /// <summary>
 /// The Repository Interface.
@@ -33,7 +29,7 @@ public interface IRepository<TEntity>
     /// </summary>
     /// <param name="id">The entity id.</param>
     /// <returns>Expected entity.</returns>
-    TEntity Get(int id);
+    TEntity GetById(object id);
 
     /// <summary>
     /// Get entities from context.
