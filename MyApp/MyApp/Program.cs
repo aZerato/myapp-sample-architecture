@@ -1,13 +1,16 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using MyApp.CrossCutting;
 using MyApp.Domain.SampleModule.Services;
-using MyApp.Models;
+using MyApp.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.InitDatabase();
 builder.Services.AddSingleton<ICacheManager, CacheManager>();
@@ -20,57 +23,18 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(options => 
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        options.RoutePrefix = string.Empty;
+    });
 }
 
 app.UseHttpsRedirection();
 
-
-app.MapGet("/cache",
-    (
-        ICacheManager cacheManager
-    ) =>
-    {
-        var results = cacheManager.GetAll();
-
-        return Results.Ok(results);
-    });
-
-app.MapGet("/cache/{key}",
-    (
-        string key,
-        ICacheManager cacheManager
-    ) =>
-    {
-        var result = cacheManager.Get(key);
-
-        return Results.Ok(result);
-    });
-
-app.MapPost("/cache", 
-    Results<BadRequest, Ok> (
-        CacheRequest cacheRequest,
-        ICacheManager cacheManager
-    ) =>
-{
-    if (cacheRequest == null || 
-    string.IsNullOrEmpty(cacheRequest.Key))
-    {
-        return TypedResults.BadRequest();
-    }
-
-    if (cacheManager.Get(cacheRequest.Key) != null)
-    {
-        return TypedResults.BadRequest();
-    }
-
-    if (string.IsNullOrEmpty(cacheRequest.Value))
-    {
-        return TypedResults.BadRequest();
-    }
-
-    cacheManager.Add(cacheRequest.Key, cacheRequest.Value);
-    
-    return TypedResults.Ok();
-});
+// APIs registration.
+app.MapCacheEndpoints();
+app.MapSampleEndpoints();
 
 app.Run();

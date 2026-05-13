@@ -12,6 +12,6 @@
     <Project Path="MyApp.CrossCutting/MyApp.CrossCutting.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
-    <File Path="../../README.md" />
+    <File Path="../README.md" />
   </Folder>
 </Solution>

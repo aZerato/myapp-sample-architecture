@@ -17,8 +17,8 @@ public class SecondaryBasicSampleService
         _unitOfWork = unitOfWork;
     }
 
-    /// <inheritdoc cref="ISecondaryBasicSampleService.GetSampleData(int)" />
-    SampleDataDTO ISecondaryBasicSampleService.GetSampleData(int ID)
+    /// <inheritdoc cref="ISecondaryBasicSampleService.GetById(int)" />
+    SampleDataDTO ISecondaryBasicSampleService.GetById(int ID)
     {
         var data = _unitOfWork.SampleDataRepository.GetById(ID);
 
@@ -30,9 +30,23 @@ public class SecondaryBasicSampleService
         };
     }
 
-    /// <inheritdoc cref="ISecondaryBasicSampleService.GetAllSampleData" />
-    IEnumerable<SampleDataDTO> ISecondaryBasicSampleService.GetAllSampleData()
+    /// <inheritdoc cref="ISecondaryBasicSampleService.GetAll" />
+    IEnumerable<SampleDataDTO> ISecondaryBasicSampleService.GetAll()
     {
         return _unitOfWork.SampleDataRepository.GetAll(SampleDataSelectBuilder.SelectSampleData());
+    }
+
+    /// <inheritdoc cref="ISecondaryBasicSampleService.GetAll" />
+    void ISecondaryBasicSampleService.Add(SampleDataDTO sampleDataDTO)
+    {
+        Enum.TryParse<SampleDataStatus>(sampleDataDTO.Status, out var status);
+
+        _unitOfWork.SampleDataRepository.Add(new SampleData
+        {
+            Status = status,
+            Title = sampleDataDTO.Title
+        });
+
+        _unitOfWork.SaveChanges();
     }
 }

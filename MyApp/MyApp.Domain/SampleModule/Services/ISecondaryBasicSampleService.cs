@@ -10,11 +10,17 @@ public interface ISecondaryBasicSampleService
     /// </summary>
     /// <param name="ID">The entity ID.</param>
     /// <returns>The expected entity.</returns>
-    SampleDataDTO GetSampleData(int ID);
+    SampleDataDTO GetById(int ID);
 
     /// <summary>
     /// Return all SampleData. 
     /// </summary>
     /// <returns>Return all SampleData.</returns>
-    IEnumerable<SampleDataDTO> GetAllSampleData();
+    IEnumerable<SampleDataDTO> GetAll();
+
+    /// <summary>
+    /// Add Sample.
+    /// </summary>
+    /// <param name="sampleDataDTO"></param>
+    void Add(SampleDataDTO sampleDataDTO);
 }

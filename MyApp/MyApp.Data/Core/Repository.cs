@@ -22,7 +22,7 @@ public class Repository<TEntity>
     /// <inheritdoc cref="IRepository{TEntity}.Add(TEntity)"/>
     public virtual void Add(TEntity entity)
     {
-        _dbContext.Add(entity);;
+        _dbContext.Add(entity);
     }
 
     /// <inheritdoc cref="IRepository{TEntity}.Remove(TEntity)"/>
