@@ -10,7 +10,7 @@ public interface ISecondaryBasicSampleService
     /// </summary>
     /// <param name="ID">The entity ID.</param>
     /// <returns>The expected entity.</returns>
-    SampleDataDTO GetById(int ID);
+    SampleDataDTO? GetById(int ID);
 
     /// <summary>
     /// Return all SampleData. 
