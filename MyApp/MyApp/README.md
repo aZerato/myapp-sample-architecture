@@ -7,7 +7,7 @@ SwaggerUI at root, so just open :
 MinAPI :
 
 - Groupe Routes "Cache"
-- Groupe Routes "Sample" is used for DI & sample of CacheManager class.
-- Groupe routes "SampleAlt" is used for demonstrate the using of "services" > "UoW" > "repository" > "EF"
+- Groupe Routes "Sample" :
+	- demonstrate the using of "services" > "UoW" > "repository" > "EF"
 
 - Dependency Injection (DI) (https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-10.0).

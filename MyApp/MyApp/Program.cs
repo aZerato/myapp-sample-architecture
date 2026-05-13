@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http.HttpResults;
 using MyApp.CrossCutting;
 using MyApp.Domain.SampleModule.Services;
 using MyApp.Endpoints;
